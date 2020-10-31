@@ -35,9 +35,42 @@ export default class Trending extends Component {
       if (i > this.state.position * 4 && i % 4 == 0) break;
       let temp = TemplateData[i];
       cards.push(
-        <Card data={temp}/>
+        <Grid.Column><Card data={temp}/></Grid.Column>
       );
     }
+    return (
+      <div style={{marginTop:'2%'}}>
+        <Segment style={{backgroundColor: '#EAF2F8'}} >
+          <Grid column={4}>
+            <Grid.Row>
+              <div style={{marginLeft: '10%', fontSize: 17, marginTop: '1%'}}>
+                Trending Open Datasets
+              </div>
+              <div style={{marginLeft: '1%', fontSize: 11, marginTop: '1.5%'}}>
+                Reloading in 29 seconds
+              </div>
+              <div style={{marginLeft: '1%', fontSize: 11, marginTop: '1.8%'}}>
+                <Icon name='close' />
+              </div>
+            </Grid.Row>
+          </Grid>
+          <Grid columns="equal">
+            <Grid.Column>
+              <center style={{marginTop: '50%'}} onClick={this.previous}>
+                <Icon name='angle left' size='big' />
+              </center>
+            </Grid.Column>
+            {cards}
+            <Grid.Column>
+              <center style={{marginTop: '50%'}} onClick={this.next}>
+                <Icon name='angle right' size='big' />
+              </center>
+            </Grid.Column>
+          </Grid>
+        </Segment>
+
+      </div>
+    );
     return(
       <div style={{marginTop:'2%'}}>
         <Segment style={{backgroundColor: '#EAF2F8'}} >
@@ -46,12 +79,13 @@ export default class Trending extends Component {
               <div style={{marginLeft: '10%', fontSize: 17, marginTop: '1%'}}>
                 Trending Open Datasets
               </div>
-                <div style={{marginLeft: '1%', fontSize: 11, marginTop: '1.5%'}}>
+              <div style={{marginLeft: '1%', fontSize: 11, marginTop: '1.5%'}}>
                 Reloading in 29 seconds
               </div>
               <div style={{marginLeft: '1%', fontSize: 11, marginTop: '1.8%', marginBottom: '13%'}}>
                 <Icon name='close' />
               </div>
+              <br />
               <Grid  style={{backgroundColor: '#EAF2F8', marginLeft: '-27%', marginTop: '5%'}}>
                 <div style={ { marginTop: '80%'}} onClick={this.previous}>
                   <Icon name='angle left' size='big' />

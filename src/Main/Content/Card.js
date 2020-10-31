@@ -1,6 +1,7 @@
 import React from 'react';
 import { Input, Button, Form, Segment, Grid, Icon, Card } from 'semantic-ui-react';
 
+import Sample from '../../Data/sample.pdf';
 import PDF from './PDF';
 
 const styles = {
@@ -32,12 +33,22 @@ export default class CardData extends React.Component {
         let temp = this.props.data;
         let { modal } = this.state;
         return (
-            <Card style={{backgroundColor: '#ffffff', marginLeft: '5%', marginTop: '5%', width: '15%'}}>
+            <Card style={{backgroundColor: '#ffffff', width: '100%'}}>
                 <Card.Content header>
                     <p>{temp.DocumentDate + " | " + temp.Language + " | " + temp.PublicationMethod}</p>
+                    <p style={{whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden'}}>
+                        <a href={Sample} target="_blank">
+                            <Icon name='download' style={{color: 'green'}}/> {temp.FileName}
+                        </a>
+                    </p>
+                    <p style={{whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden'}}>
+                        <Icon name='user' style={{color: 'violet'}}/> {temp.UploadedBy}
+                    </p>
                     <div style={{fontSize: 15, marginTop: '5%', color: 'blue'}}>
                         <p style={{whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden'}}
-                            onClick={() => this.setState({ modal: true })}>{temp.DocumentTitle}</p>
+                            onClick={() => this.setState({ modal: true })}>
+                            <Icon name='eye' style={{color: 'blue'}}/>   {temp.DocumentTitle}
+                        </p>
                         {modal && <PDF open={modal} close={() => this.setState({modal: false})}/>}
                     </div>
                 </Card.Content>
