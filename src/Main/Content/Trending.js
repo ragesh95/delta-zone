@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, BrowserRouter as Router } from 'react-router-dom';
 import { Input, Button, Form, Segment, Grid, Icon } from 'semantic-ui-react';
 
+import Card from './Card';
 import TemplateData from '../../Data/Template.json';
 
 export default class Trending extends Component {
@@ -34,20 +35,7 @@ export default class Trending extends Component {
       if (i > this.state.position * 4 && i % 4 == 0) break;
       let temp = TemplateData[i];
       cards.push(
-        <Grid columns={1} divided style={{backgroundColor: '#ffffff', marginLeft: '5%', marginTop: '5%', width: '15%'}}>
-          <Grid.Column>
-            <div>
-              <p>{temp.DocumentDate + " | " + temp.Language + " | " + temp.PublicationMethod}</p>
-            </div>
-            <div style={{fontSize: 15, marginTop: '5%', color: 'blue'}}>
-              <p style={{whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden'}}>{temp.DocumentTitle}</p>
-            </div>
-            <hr />
-            <div>
-              <p>{temp.DocumentTitle}</p>
-            </div>
-          </Grid.Column>
-        </Grid>
+        <Card data={temp}/>
       );
     }
     return(
